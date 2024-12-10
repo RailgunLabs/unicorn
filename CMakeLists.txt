@@ -35,9 +35,9 @@ set(GENERATED_FILES
 )
 add_custom_command(
     OUTPUT ${GENERATED_FILES}
-    COMMAND Python3::Interpreter amalgamate.pyz --config "${UNICORN_CONFIG}" --output "${CMAKE_BINARY_DIR}"
+    COMMAND Python3::Interpreter generate.pyz --config "${UNICORN_CONFIG}" --output "${CMAKE_BINARY_DIR}"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DEPENDS amalgamate.pyz unicorn.bin ${UNICORN_CONFIG})
+    DEPENDS generate.pyz unicorn.bin ${UNICORN_CONFIG})
 add_custom_target(unicorn_generate DEPENDS ${GENERATED_FILES})
 
 include_directories(${CMAKE_BINARY_DIR}) # Ensure the generated header is discoverable.

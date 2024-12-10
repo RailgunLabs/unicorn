@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
 
     uni_gc(0);
     uni_ccc(0);
-    uni_binary(0, UNI_NONCHARACTER_CODE_POINT);
-    uni_numeric(0);
+    uni_is(0, UNI_NONCHARACTER_CODE_POINT);
+    uni_numval(0);
     uni_tolower(0);
     uni_toupper(0);
     return 0;
