@@ -33,6 +33,15 @@ You can even exclude character blocks for scripts your application does not supp
 
 To customize Unicorn, modify `features.json` and run the `amalgamate.pyz` script.
 This script will generate the `unicorn.c` and `unicorn.h` source files which you can compile with your C project.
+When Unicorn is built with a provided build system (e.g. CMake), the script is executed automatically as part of the build process.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/customization-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset=".github/customization.svg">
+    <img alt="Customization" src=".github/customization.svg" width="500px">
+  </picture>
+</p>
 
 The schema for `features.json` is [documented here](https://RailgunLabs.com/unicorn/manual/feature-customization/).
 
