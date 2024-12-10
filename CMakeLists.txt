@@ -53,7 +53,7 @@ add_library(unicorn STATIC ${SOURCES})
 add_dependencies(unicorn unicorn_generate)
 
 if (UNICORN_BUILD_ARCHIVES)
-    set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-amalgamated-${PROJECT_VERSION}")
+    set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-amalgamation-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
     set(CPACK_PACKAGE_VENDOR "Railgun Labs")
     set(CPACK_PACKAGE_CONTACT "Railgun Labs <https://RailgunLabs.com>")
