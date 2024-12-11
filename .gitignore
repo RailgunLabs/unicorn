@@ -67,6 +67,9 @@ autom4te.cache
 /missing
 /stamp-h1
 
+# Generated pkg-config file
+unicorn.pc
+
 # Python files
 *.pyc
 
