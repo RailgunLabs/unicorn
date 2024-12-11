@@ -1,0 +1,35 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_strerror \- status code to string
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "const char *uni_strerror(unistat " status ");"
+.fi
+.SH DESCRIPTION
+Returns an error \f[I]status\f[R] as a string.
+If \f[I]status\f[R] does not describe an error, then \f[C]NULL\f[R] is returned.
+Examples of success codes, which would result in \f[C]NULL\f[R], are \f[B]UNI_OK\f[R] and \f[B]UNI_DONE\f[R].
+.PP
+If a string is returned it will be encoded as UTF-8 and with only Basic Latin characters (characters in the ASCII code space).
+It will not use punctuation characters, uppercase characters, or control characters.
+For example if \f[I]status\f[R] is \f[B]UNI_NO_MEMORY\f[R] then the implementation would return “no memory”.
+.SH RETURN VALUE
+String describing an error or \f[C]NULL\f[R] if \f[I]status\f[R] does not describe an error.
+.SH SEE ALSO
+.BR unistat (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

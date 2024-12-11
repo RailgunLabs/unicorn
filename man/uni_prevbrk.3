@@ -1,0 +1,40 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_prevbrk \- sets the iterator position to the preceding boundary
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_prevbrk(unibreak " type ", const void *" text ", unisize " length ", uniattr " attributes ", unisize *" index ");"
+.fi
+.SH DESCRIPTION
+Set the iterator position to the boundary preceding its current position.
+The \f[C]pos\f[R] parameter will be populated with the code unit offset of the boundary and whether said boundary is optional or mandatory.
+.PP
+When \f[B]UNI_DONE\f[R] is returned then the position of the iterator is at the beginning of the text being scanned.
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the break iterator was successfully repositioned.
+.TP
+UNI_DONE
+If the break iterator is at the beginning of the text being scanned.
+.TP
+UNI_BAD_OPERATION
+If \f[C]it\f[R] is \f[C]NULL\f[R].
+.SH SEE ALSO
+.BR unistat (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

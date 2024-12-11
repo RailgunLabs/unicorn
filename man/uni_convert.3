@@ -1,0 +1,51 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_convert \- convert encoding forms
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_convert(const void *" src ", unisize " src_len ", uniattr " src_attr ", void *" dst ", unisize *" dst_len ", uniattr " dst_attr ");"
+.fi
+.SH DESCRIPTION
+The length of \f[I]src\f[R] as a UTF-16 encoded string can be computed by passing \f[C]NULL\f[R] and \f[C]0\f[R] as arguments to \f[C]dest\f[R] and \f[C]dest_len\f[R].
+.PP
+If \f[C]dest_len\f[R] isn’t large enough to contain the re-encoded \f[I]src\f[R] text, then the resulting \f[I]dst\f[R] text will be truncated to the nearest code point boundary.
+.PP
+If \f[I]src_attr\f[R] and \f[I]dst_attr\f[R] are identical, then this function behaves like \f[B]memcpy\f[R](3).
+.PP
+If \f[I]dst\f[R] is \f[C]NULL\f[R], then \f[I]dst_len\f[R] must be zero.
+If \f[I]dst\f[R] is \f[C]NULL\f[R], then the function writes to \f[I]dst_len\f[R] the number of code units in the fully re-encoded text and returns \f[B]UNI_OK\f[R].
+Calling the function this way can be used to first compute the total length of the destination buffer, then it can be called again with a heap allocated buffer large enough to accommodate it.
+.SH RETURN VALUE
+.TP
+UNI_OK
+On success.
+.TP
+UNI_BAD_OPERATION
+If \f[I]src\f[R] or \f[C]dest_len\f[R] are \f[C]NULL\f[R].
+.TP
+UNI_BAD_ENCODING
+If the encoding of \f[I]src\f[R] is malformed.
+.TP
+UNI_NO_SPACE
+If \f[C]dest\f[R] is too small.
+.TP
+UNI_FEATURE_DISABLED
+If the \f[I]src_attr\f[R] and \f[I]dst_attr\f[R] encoding forms are disabled.
+.SH SEE ALSO
+.BR unistat (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

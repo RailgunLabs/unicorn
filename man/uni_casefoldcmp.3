@@ -1,0 +1,38 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_casefoldcmp \- compare two strings for case-insensitive equality
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_casefoldcmp(unicasefold " casing ", const void *" s1 ", unisize " s1_len ", uniattr " s1_attr ", const void *" s2 ", unisize " s2_len ", uniattr " s2_attr ", bool *" result ");"
+.fi
+.SH DESCRIPTION
+The Unicode Standard refers to this as Default Caseless Matching.
+.SH RETURN VALUE
+.TP
+UNI_OK
+If \f[C]text\f[R] was checked successfully.
+.TP
+UNI_BAD_OPERATION
+If \f[C]text\f[R] is \f[C]NULL\f[R], \f[C]length\f[R] is negative, or \f[C]cmp\f[R] is \f[C]NULL\f[R].
+.TP
+UNI_FEATURE_DISABLED
+If the library was built without support for case mapping.
+.TP
+UNI_NO_MEMORY
+If dynamic memory allocation failed.
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

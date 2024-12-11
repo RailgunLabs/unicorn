@@ -1,0 +1,45 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_prev \- decode the previous scalar value
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_prev(const void *" text ", unisize " length ", uniattr " attributes ", unisize *" index ", unichar *" cp ");"
+.fi
+.SH DESCRIPTION
+This function returns \f[B]UNI_DONE\f[R] when iteration has reached the end of \f[I]text\f[R] otherwise it returns \f[B]UNI_OK\f[R] indicating there are more characters.
+It behaves like the prefix decrement operator in C (\f[C]--i\f[R]): It iterates to the previous Unicode scalar value, decodes and returns it.
+.PP
+If the implementation detects a malformed Unicode scalar sequences then it will return \f[B]UNI_BAD_ENCODING\f[R] and not modify \f[C]offset\f[R] and \f[C]c\f[R].
+.PP
+The \f[C]offset\f[R] parameter must point to a code point boundary otherwise the behavior is undefined.
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the character was successfully decoded.
+.TP
+UNI_DONE
+If the end of \f[I]text\f[R] was reached.
+.TP
+UNI_BAD_ENCODING
+If \f[I]text\f[R] is malformed.
+.TP
+UNI_BAD_OPERATION
+If \f[I]text\f[R], \f[C]offset\f[R], or \f[C]c\f[R] are NULL.
+.SH SEE ALSO
+.BR unistat (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

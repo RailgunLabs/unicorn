@@ -1,0 +1,40 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_compress \- compress text
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_compress(const void *" text ", unisize " text_len ", uniattr " text_attr ", uint8_t *" buffer ", unisize *" buffer_length ");"
+.fi
+.SH DESCRIPTION
+Text is compressed based on its code points, i.e. UTF-8, 16, and 32 will compress to the same byte sequence.
+.PP
+The compression algorithm the text compressor executes is determined by the \f[C]compressor\f[R] argument.
+.SH RETURN VALUE
+.TP
+UNI_OK
+On success.
+.TP
+UNI_NO_SPACE
+If \f[I]buffer\f[R] is not large enough.
+.TP
+UNI_BAD_OPERATION
+If \f[I]text\f[R] or \f[I]buffer_length\f[R] is \f[C]NULL\f[R].
+.TP
+UNI_FEATURE_DISABLED
+If Unicorn was configured without support for the compression algorithm.
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

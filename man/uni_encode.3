@@ -1,0 +1,60 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_encode \- encode a scalar value
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_encode(unichar " cp ", void *" buffer ", unisize *" count ", uniattr " attributes ");"
+.fi
+.SH DESCRIPTION
+Encoded the Unicode scalar value \f[I]cp\f[R] into the encoding form \f[I]attributes\f[R] and write the resulting code units to \f[I]buffer\f[R].
+The code unit capacity of \f[I]buffer\f[R] is specified by \f[I]count\f[R].
+The implementation will write the number of code units needed to encode \f[I]cp\f[R] to \f[I]count\f[R] on output.
+.PP
+To ensure the \f[I]buffer\f[R] is sufficiently-sized the following table lists the number of code units needed to encode any character within its respective encoding form.
+.PP
+.TS
+allbox tab(|);
+ll.
+\fBEncoding Form\fR|\fBLongest Code Unit Sequence\fR
+T{
+UTF-8
+T}|T{
+4
+T}
+T{
+UTF-16
+T}|T{
+2
+T}
+T{
+UTF-32
+T}|T{
+1
+T}
+.TE
+.PP
+The number of code units needed will be computed by the implementation if \f[I]buffer\f[R] is \f[C]NULL\f[R] and \f[I]count\f[R] is zero.
+In this case the implementation will write the number of code units needed to \f[I]count\f[R].
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the character was encoded successfully.
+.TP
+UNI_BAD_OPERATION
+If \f[I]cp\f[R] is not a Unicode scalar value; If \f[I]count\f[R] is \f[C]NULL\f[R]; If \f[I]buffer\f[R] is \f[C]NULL\f[R] and \f[I]count\f[R] is non-zero.
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

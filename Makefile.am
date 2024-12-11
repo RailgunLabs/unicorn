@@ -1,3 +1,5 @@
+SUBDIRS = man
+
 EXTRA_DIST = generate.pyz unicorn.bin features.json autogen.sh LICENSE CMakeLists.txt README.md
 
 AUTOMAKE_OPTIONS = subdir-objects

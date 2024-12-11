@@ -1,0 +1,62 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_sortkeymk \- make sort key
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_sortkeymk(const void *" text ", unisize " length ", uniattr " attributes ", uniweighting " weighting ", unistrength " strength ", uint16_t *" sortkey ", unisize *" sortkey_cap ");"
+.fi
+.SH DESCRIPTION
+Build a sort key for \f[I]text\f[R] and writes the result to \f[I]sortkey\f[R].
+The number of code units in \f[I]text\f[R] is specified by \f[I]length\f[R].
+If \f[I]length\f[R] is negative then \f[I]text\f[R] is assumed to be null terminated.
+.PP
+The implementation will set \f[I]sortkey_cap\f[R] to the number of 16-bit integers written to \f[I]sortkey\f[R].
+The implementation returns \f[B]UNI_NO_SPACE\f[R] if \f[I]sortkey\f[R] lacks capacity.
+In this case the value of \f[I]sortkey\f[R] is undefined and \f[I]sortkey_cap\f[R] is set to the length needed.
+.PP
+If the implementation detects \f[I]text\f[R] is malformed, then it returns \f[B]UNI_BAD_ENCODING\f[R].
+.PP
+Support for collation must be enabled in the JSON configuration file.
+.PP
+.in +4n
+.EX
+{
+    "algorithms": {
+        "collation": true
+    }
+}
+.EE
+.in
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the scalar was successfully decoded.
+.TP
+UNI_NO_SPACE
+If \f[I]sortkey\f[R] lacks capacity for the collation elements.
+.TP
+UNI_BAD_OPERATION
+If \f[I]text\f[R] or \f[I]sortkey_cap\f[R] are NULL.
+.TP
+UNI_NO_MEMORY
+If dynamic memory allocation failed.
+.SH SEE ALSO
+.BR unistat (3),
+.BR uniweighting (3),
+.BR unistrength (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

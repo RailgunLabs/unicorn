@@ -52,6 +52,8 @@ set(SOURCES
 add_library(unicorn STATIC ${SOURCES})
 add_dependencies(unicorn unicorn_generate)
 
+add_subdirectory(man)
+
 if (UNICORN_BUILD_ARCHIVES)
     set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-amalgamation-${PROJECT_VERSION}")
     set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})

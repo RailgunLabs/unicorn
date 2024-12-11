@@ -1,0 +1,74 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_casefold \- perform case folding
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_casefold(unicasefold " casing ", const void *" src ", unisize " src_len ", uniattr " src_attr ", void *" dst ", unisize *" dst_len ", uniattr " dst_attr ");"
+.fi
+.SH DESCRIPTION
+This function converts \f[I]src\f[R] to upper case and writes the result to \f[I]dst\f[R].
+When the function is called \f[I]dst_len\f[R] must specify the capacity of the \f[I]dst\f[R] buffer.
+Before the function returns it writes the total number of code units in the upper cased text to \f[I]dst_len\f[R].
+If the capacity of \f[I]dst\f[R] is insufficient, then \f[B]UNI_NO_SPACE\f[R] is returned.
+.PP
+If \f[I]dst\f[R] is \f[C]NULL\f[R], then \f[I]dst_len\f[R] must be zero.
+If \f[I]dst\f[R] is \f[C]NULL\f[R], then the function writes to \f[I]dst_len\f[R] the number of code units in the fully case folded text and returns \f[B]UNI_OK\f[R].
+Calling the function this way can be used to first compute the total length of the destination buffer, then it can be called again with a heap allocated buffer large enough to accommodate it.
+.PP
+The implementation always null-terminates \f[I]dst\f[R] when \f[I]src_len\f[R] is \f[C]-1\f[R].
+.PP
+.in +4n
+.EX
+#include <unicorn.h>
+
+int main(void)
+{
+    const char *in = u8"hello, 世界";
+    char out[32];
+    long outlen = sizeof(buf);
+
+    if (uni_caseconv(UNI_UPPER, in, -1, out, &outlen, UENC_UTF8) != UNI_OK)
+    {
+        puts("something went wrong");
+        return 1;
+    }
+
+    printf("%.*s", outlen, out); // prints “HELLO, 世界”
+    return 0;
+}
+.EE
+.in
+.SH RETURN VALUE
+.TP
+UNI_OK
+If \f[C]text\f[R] was checked successfully.
+.TP
+UNI_BAD_OPERATION
+If \f[C]text\f[R] is \f[C]NULL\f[R], \f[C]length\f[R] is negative, or \f[C]result\f[R] is \f[C]NULL\f[R].
+.TP
+UNI_NO_SPACE
+If \f[I]dst\f[R] was not large enough.
+.TP
+UNI_FEATURE_DISABLED
+If the library was built without support for case mapping.
+.TP
+UNI_NO_MEMORY
+If dynamic memory allocation failed.
+.SH SEE ALSO
+.BR unistat (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

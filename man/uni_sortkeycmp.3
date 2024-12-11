@@ -1,0 +1,35 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_sortkeycmp \- compares sort keys
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_sortkeycmp(const uint16_t *" sk1 ", unisize " sk1_len ", const uint16_t *" sk2 ", unisize " sk2_len ", int *" result ");"
+.fi
+.SH DESCRIPTION
+Compare sort keys \f[I]sk1\f[R] and \f[I]sk2\f[R] and write either -1, 0, or 1 to \f[I]result\f[R] depending on if \f[C]sk1 < sk2\f[R], \f[C]sk1 = sk2\f[R], or \f[C]sk1 > sk2\f[R].
+The sort keys must be generated with \f[B]uni_sortkeymk\f[R](3).
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the collation algorithm executed successfully.
+.TP
+UNI_BAD_OPERATION
+If \f[I]sk1\f[R], \f[I]sk2\f[R], or \f[I]result\f[R] are \f[C]NULL\f[R].
+.SH SEE ALSO
+.BR uni_sortkeymk (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.

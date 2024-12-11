@@ -1,0 +1,55 @@
+.TH "UNICORN" "3" "Dec 10th 2024" "Unicorn 0.8.0"
+.SH NAME
+uni_collate \- compare strings for sorting
+.SH LIBRARY
+Embeddable Unicode Algorithms (libunicorn, -lunicorn)
+.SH SYNOPSIS
+.nf
+.B #include <unicorn.h>
+.PP
+.BI "unistat uni_collate(const void *" s1 ", unisize " s1_len ", uniattr " s1_attr ", const void *" s2 ", unisize " s2_len ", uniattr " s2_attr ", uniweighting " weighting ", unistrength " strength ", int *" result ");"
+.fi
+.SH DESCRIPTION
+Compare strings \f[I]s1\f[R] and \f[I]s2\f[R] and write either -1, 0, or 1 to \f[I]result\f[R] depending on if \f[C]s1 < s2\f[R], \f[C]s1 = s2\f[R], or \f[C]s1 > s2\f[R].
+This function is intended for one-off string comparisons.
+If a string will be compared multiple times, then it’s recommended to build a sort key for it.
+Sort keys are constructed with \f[B]uni_sortkeymk\f[R](3) and compared with \f[B]uni_sortkeycmp\f[R](3).
+.PP
+Support for collation must be enabled in the JSON configuration file.
+.PP
+.in +4n
+.EX
+{
+    "algorithms": {
+        "collation": true
+    }
+}
+.EE
+.in
+.SH RETURN VALUE
+.TP
+UNI_OK
+If the scalar was successfully decoded.
+.TP
+UNI_BAD_OPERATION
+If \f[I]s1\f[R], \f[I]s2\f[R], or \f[I]result\f[R] are NULL.
+.TP
+UNI_NO_MEMORY
+If dynamic memory allocation failed.
+.SH SEE ALSO
+.BR uni_sortkeymk (3),
+.BR uni_sortkeycmp (3),
+.BR uniweighting (3),
+.BR unistrength (3)
+.SH AUTHOR
+.UR https://railgunlabs.com
+Railgun Labs
+.UE .
+.SH INTERNET RESOURCES
+The online documentation is published on the
+.UR https://railgunlabs.com/unicorn
+Railgun Labs website
+.UE .
+.SH LICENSING
+Unicorn is distributed with its end-user license agreement (EULA).
+Please review the agreement for information on terms & conditions for accessing or otherwise using Unicorn and for a DISCLAIMER OF ALL WARRANTIES.
