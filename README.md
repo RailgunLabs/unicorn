@@ -102,7 +102,7 @@ Unit tests are executed on both little and big endian hardware as part of contin
 
 ## Installation
 
-Download a prebuilt header/source amalgamation from the [releases page](https://github.com/RailgunLabs/unicorn/releases) or generate one yourself by running `./generate.pyz` (requires Python 3.6 or newer).
+Download a prebuilt header/source amalgamation from the [releases page](https://github.com/RailgunLabs/unicorn/releases) or generate one yourself by running `./generate.pyz` (requires Python 3.9 or newer).
 The prebuilt amalgamation includes _all_ features whereas the one you generate yourself only includes the features you specify in [features.json](features.json).
 
 Alternatively, build a linkable library with
